@@ -1,0 +1,44 @@
+.b-layout {
+  width: 100%;
+  min-height: 100vh;
+  flex-direction: column;
+  display: flex;
+  height: 100%;
+  overflow-x: hidden;
+  max-width: 2560px;
+  margin: 0 auto;
+  &-main{
+    flex: 1 0 auto;
+    width: 100%;
+  }
+  &-footer{
+    flex: none;
+  }
+}
+
+
+.b-list{
+  &-item{
+    margin-bottom: 1rem;
+  }
+}
+
+
+.react-datepicker{
+  border-color: rgba(0,0,0,.125);
+  &__header{
+    border-color: rgba(0,0,0,.125);
+    background-color: #f7f7f7;
+  }
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range{
+  background-color: #007bff;
+
+  &:hover{
+    background-color: #0069d9;
+  }
+
+}
