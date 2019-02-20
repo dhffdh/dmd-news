@@ -44,37 +44,106 @@ class NewsItem extends Component {
             category,
             preview,
             text,
+            comments,
         } = this.props.info;
 
         const { toggled } = this.state;
 
         return (
             <Card className="b-item">
-                <Card.Header >
-                    <div className="d-flex justify-content-between">
-                        <div className="text-muted">{date} </div>
-                        <div className="b-item__author">{category} / {author}</div>
-                    </div>
-                </Card.Header>
                 {
-                    !!img ? <Card.Img variant="center" src={img}/> : null
+                    !!img ? <Card.Img variant="top" src={img}/> : null
                 }
                 <Card.Body>
+                    <div className="b-item__meta">
+                        <div className="b-item__author">{category} / {date} / {author}</div>
+                    </div>
+
                     <Card.Title onClick={this.toggleFullText} className="b-item__title">{title}</Card.Title>
+
+
                     <Card.Text>
                         <div>
                             <text>{preview}</text><text className={"b-item__full-text" + ( toggled ? " toogled" : "" ) }> {text}</text> <a href="#" onClick={this.toggleFullText}>{ !toggled ? "Далее..." : "Свернуть." }.</a>
                         </div>
                     </Card.Text>
-
-                    <hr/>
-
-                    <Card.Text></Card.Text>
                 </Card.Body>
+
+                {
+                    !!comments && comments.length > 0 ? (
+                        <NewsComments comments={comments}></NewsComments>
+                    ) : null
+                }
+
             </Card>
         )
     }
 }
+
+
+class NewsComments extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            toggled: false, //флаг развернут
+        };
+        this.toggleComments = this.toggleComments.bind(this);
+    }
+
+    toggleComments(ev){
+        ev.preventDefault();
+        this.setState({
+            toggled: !this.state.toggled
+        });
+    }
+
+    render() {
+        const {comments} = this.props;
+        const {toggled} = this.state;
+
+        const count = 3;
+
+        return (
+            <div>
+                <hr className="m-0"/>
+                <Card.Body>
+                    <div className="b-item-comment-list">
+                        <div className="b-item-comment-title">Комменатрии:</div>
+                        <div>
+                            {
+                                comments.map((comment, commentIndex) => {
+
+                                    if(!toggled && (commentIndex + 1) > count )
+                                        return true;
+
+                                    return <div className="b-item-comment" key={commentIndex}>
+                                        <div className="b-item-comment__author">
+                                            <span>{comment.author}</span> / <span>{comment.datetime}</span>
+                                        </div>
+                                        <div className="b-item-comment__text">{comment.text}</div>
+                                    </div>
+                                })
+                            }
+                        </div>
+                        <div>
+                            {
+                                ( !!comments && comments.length > count ) ?
+                                    (
+                                        <a href="#" onClick={this.toggleComments} className="b-item-comment-toggler">{ !toggled ? "Показать все" : "Свернуть" }</a>
+                                    ) :
+                                     null
+                            }
+                        </div>
+                    </div>
+                </Card.Body>
+            </div>
+        )
+    }
+}
+
+
+
 
 class App extends Component {
 

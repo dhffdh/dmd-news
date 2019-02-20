@@ -44,7 +44,40 @@ const NewsList = [
         categoryId: 1,
         author: "Автор Авторов",
         text: "Nisi duis sit Lorem et non. Aliquip esse eu dolore et. Velit est aute pariatur adipisicing cupidatat consectetur est. Deserunt nostrud veniam minim nulla pariatur eu incididunt pariatur irure nostrud. Excepteur commodo voluptate do fugiat ipsum.",
-        preview: "Pariatur cillum nostrud occaecat sint pariatur dolore sint nisi et ea."
+        preview: "Pariatur cillum nostrud occaecat sint pariatur dolore sint nisi et ea.",
+        comments: [
+            {
+                author: "Автор Авторов",
+                text: "Pariatur cillum nostrud occaecat sint pariatur dolore sint nisi et ea.",
+                datetime: "2019-02-18 12:01",
+            },
+            {
+                author: "Автор Авторов 2",
+                text: "Pariatur cillum nostrud occaecat sint pariatur dolore sint nisi et ea.",
+                datetime: "2019-02-18 12:02",
+            },
+            {
+                author: "Автор Авторов 3",
+                text: "Pariatur tur cillum nostrud oc tur cillum nostrud oc  tur cillum nostrud oc cillum nostrud occaecat sint pariatur dolore sint nisi et ea.",
+                datetime: "2019-02-18 12:03",
+            },
+            {
+                author: "Автор Авторов",
+                text: "Pariatur cillum nostrud occaecat sint pariatur dolore sint nisi et ea.",
+                datetime: "2019-02-18 12:01",
+            },
+            {
+                author: "Автор Авторов 2",
+                text: "Pariatur cillum nostrud occaecat sint pariatur dolore sint nisi et ea.",
+                datetime: "2019-02-18 12:02",
+            },
+            {
+                author: "Автор Авторов 3",
+                text: "Pariatur tur cillum nostrud oc tur cillum nostrud oc  tur cillum nostrud oc cillum nostrud occaecat sint pariatur dolore sint nisi et ea.",
+                datetime: "2019-02-18 12:03",
+            }
+        ]
+
     },
 
     {
@@ -54,7 +87,29 @@ const NewsList = [
         "categoryId": 5,
         "author": "Frazier Nguyen",
         "text": "Consequat cillum laborum cupidatat reprehenderit fugiat nostrud ut fugiat dolore ipsum nisi ullamco. Culpa fugiat reprehenderit eiusmod Lorem tempor enim excepteur consectetur eiusmod est. Incididunt laborum aliqua anim sit nisi qui irure aliqua sunt amet et magna consequat incididunt. Aute consequat ad quis nisi nulla pariatur aute. Velit reprehenderit adipisicing qui esse eiusmod aliqua officia dolore veniam magna excepteur incididunt Lorem.",
-        "preview": "Ad magna mollit eiusmod consequat reprehenderit proident esse velit irure in deserunt incididunt nisi."
+        "preview": "Ad magna mollit eiusmod consequat reprehenderit proident esse velit irure in deserunt incididunt nisi.",
+        comments: [
+            {
+                author: "Автор Авторов",
+                text: "Pariatur cillum nostrud occaecat sint pariatur dolore sint nisi et ea.",
+                datetime: "2019-02-18 12:01",
+            },
+            {
+                author: "Автор Авторов 2",
+                text: "Pariatur cillum nostrud occaecat sint pariatur dolore sint nisi et ea.",
+                datetime: "2019-02-18 12:02",
+            },
+            {
+                author: "Автор Авторов 2",
+                text: "Pariatur cillum nostrud occaecat sint pariatur dolore sint nisi et ea.",
+                datetime: "2019-02-18 12:02",
+            },
+            {
+                author: "Автор Авторов 2",
+                text: "Pariatur cillum nostrud occaecat sint pariatur dolore sint nisi et ea.",
+                datetime: "2019-02-18 12:02",
+            }
+        ]
     },
     {
         "title": "Conjurica Suremax",
@@ -63,7 +118,19 @@ const NewsList = [
         "categoryId": 3,
         "author": "Greene Lara",
         "text": "Officia nulla nisi mollit sit mollit commodo id cillum culpa. Elit ipsum laborum ea id veniam nostrud ipsum aute nisi excepteur. Do exercitation labore minim nulla dolore amet mollit dolor. Ex excepteur commodo adipisicing nostrud. Fugiat eu anim dolor est ut elit adipisicing ut voluptate aute sunt exercitation nostrud.",
-        "preview": "Exercitation est laborum minim est officia consectetur aute consectetur culpa incididunt quis."
+        "preview": "Exercitation est laborum minim est officia consectetur aute consectetur culpa incididunt quis.",
+        comments: [
+            {
+                author: "Автор Авторов",
+                text: "Pariatur cillum nostrud occaecat sint pariatur dolore sint nisi et ea.",
+                datetime: "2019-02-18 12:01",
+            },
+            {
+                author: "Автор Авторов 2",
+                text: "Pariatur cillum nostrud occaecat sint pariatur dolore sint nisi et ea.",
+                datetime: "2019-02-18 12:02",
+            }
+        ]
     },
     {
         "title": "Zilladyne Parcoe",
