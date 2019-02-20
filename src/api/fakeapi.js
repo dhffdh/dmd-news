@@ -309,13 +309,10 @@ function fullInfoList(NewsList) {
 const Api = {
 
     getInitData(){
-        //console.log(fullInfoList(NewsList));
         return fakeRequest(100).then( () => { return { list: fullInfoList(NewsList), categories: CategoryList }} );
     },
 
     getList(params) {
-
-        //console.log('getList:', params);
 
         let resList = NewsList;
 
