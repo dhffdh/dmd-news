@@ -17,7 +17,23 @@ function getFormatDate(dateObject){
     return moment(dateObject).format('YYYY-MM-DD')
 }
 
-class NewsItem extends PureComponent {
+class NewsItem extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            toggled: false, //флаг развернут
+        };
+        this.toggleFullText = this.toggleFullText.bind(this);
+    }
+
+    toggleFullText(ev){
+        ev.preventDefault();
+
+        this.setState({
+            toggled: !this.state.toggled
+        });
+    }
 
     render() {
         const {
@@ -25,22 +41,35 @@ class NewsItem extends PureComponent {
             title,
             date,
             author,
-        } = this.props;
+            category,
+            preview,
+            text,
+        } = this.props.info;
+
+        const { toggled } = this.state;
 
         return (
-            <Card>
-                <Card.Header>
+            <Card className="b-item">
+                <Card.Header >
                     <div className="d-flex justify-content-between">
-                        <div className="text-muted">{date}</div>
-                        <div className="text-muted">{author}</div>
+                        <div className="text-muted">{date} </div>
+                        <div className="b-item__author">{category} / {author}</div>
                     </div>
                 </Card.Header>
                 {
                     !!img ? <Card.Img variant="center" src={img}/> : null
                 }
                 <Card.Body>
-                    <Card.Title>{title}</Card.Title>
+                    <Card.Title onClick={this.toggleFullText} className="b-item__title">{title}</Card.Title>
+                    <Card.Text>
+                        <div>
+                            <text>{preview}</text><text className={"b-item__full-text" + ( toggled ? " toogled" : "" ) }> {text}</text> <a href="#" onClick={this.toggleFullText}>{ !toggled ? "Далее..." : "Свернуть." }.</a>
+                        </div>
+                    </Card.Text>
+
                     <hr/>
+
+                    <Card.Text></Card.Text>
                 </Card.Body>
             </Card>
         )
@@ -68,7 +97,7 @@ class App extends Component {
     //Обновление списка после именений фильтров
     updateList(){
         Api.getList({
-            category: this.state.selectedCategory,
+            categoryId: this.state.selectedCategory,
             date: getFormatDate(this.state.selectedDate)
         }).then(
             (list) => {
@@ -121,7 +150,7 @@ class App extends Component {
                 this.setState({
                     loading: false,
                     newsList: res.list,
-                    categories: res.category,
+                    categories: res.categories,
                 });
             }
         );
@@ -137,7 +166,7 @@ class App extends Component {
 
     renderFooter(){
         return (
-            <footer className="pt-4 my-md-5 pt-md-5 border-top">
+            <footer className="pt-3 my-md-3 pt-md-3 border-top">
                 <Container>
                     <Row>
                         <Col>
@@ -188,11 +217,7 @@ class App extends Component {
                                                     {
                                                         (newsList.length > 0) ? newsList.map((el,index2) => {
                                                             return <div key={index2} className="b-list-item">
-                                                                <NewsItem img={el.img}
-                                                                          title={el.title}
-                                                                          date={el.date}
-                                                                          author={el.author}
-                                                                ></NewsItem>
+                                                                <NewsItem info={el}></NewsItem>
                                                             </div>
                                                         }) : <div>Ничего не найдено...</div>
                                                     }
@@ -204,14 +229,13 @@ class App extends Component {
                                 </Col>
 
                                 <Col md="auto" className="mb-3">
-                                    <div>{ getFormatDate(this.state.selectedDate) }</div>
                                     <DatePicker
                                         inline
                                         selected={ this.state.selectedDate }
                                         onChange={this.handleDateChange}
                                     />
                                     <div>
-                                        <Button variant="link" onClick={this.clearDate}>Сбросить дату</Button>
+                                        <Button variant="secondary" size="sm" onClick={this.clearDate}>Сбросить дату</Button>
                                     </div>
                                 </Col>
                             </Row>

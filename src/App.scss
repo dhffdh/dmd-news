@@ -42,3 +42,23 @@
   }
 
 }
+
+.b-item{
+
+  &__title{
+    cursor: pointer;
+  }
+
+  &__full-text{
+    display: none;
+    &.toogled{
+      display: inline;
+    }
+  }
+
+  &__author{
+    color: #bdbdbd;
+    font-size: 13px;
+  }
+}
+
