@@ -4,6 +4,11 @@ function fakeRequest(delay = 2000) {
     });
 }
 
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+
 const CategoryList = [
     {
         value: 'all',
@@ -334,9 +339,8 @@ const Api = {
         }
 
 
-        return fakeRequest().then(
+        return fakeRequest(getRandomInt(100,1500)).then(
             () => {
-
                     return fullInfoList(resList)
                 }
             );

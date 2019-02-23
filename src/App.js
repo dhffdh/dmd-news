@@ -58,14 +58,9 @@ class NewsItem extends Component {
                     <div className="b-item__meta">
                         <div className="b-item__author">{category} / {date} / {author}</div>
                     </div>
-
                     <Card.Title onClick={this.toggleFullText} className="b-item__title">{title}</Card.Title>
-
-
                     <Card.Text>
-                        <div>
-                            <text>{preview}</text><text className={"b-item__full-text" + ( toggled ? " toogled" : "" ) }> {text}</text> <a href="#" onClick={this.toggleFullText}>{ !toggled ? "Далее..." : "Свернуть." }.</a>
-                        </div>
+                        <span>{preview}</span><span className={"b-item__full-text" + ( toggled ? " toogled" : "" ) }> {text}</span> <a href="#" onClick={this.toggleFullText}>{ !toggled ? "Далее..." : "Свернуть" }</a>
                     </Card.Text>
                 </Card.Body>
 
@@ -74,7 +69,6 @@ class NewsItem extends Component {
                         <NewsComments comments={comments}></NewsComments>
                     ) : null
                 }
-
             </Card>
         )
     }
@@ -150,7 +144,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: true, //флаг "Загрузка"
+            isLoading: true, //флаг "Загрузка"
 
             newsList: [], // Список новостей
             categories: [], // Список категорий
@@ -171,7 +165,7 @@ class App extends Component {
         }).then(
             (list) => {
                 this.setState({
-                    loading: false,
+                    isLoading: false,
                     newsList: list
                 });
             }
@@ -183,7 +177,7 @@ class App extends Component {
         if(catValue === this.state.selectedCategory)
             return true;
         this.setState({
-                loading: true,
+                isLoading: true,
                 selectedCategory: catValue
             }, () => this.updateList()
         );
@@ -195,7 +189,7 @@ class App extends Component {
             return true;
 
         this.setState({
-                loading: true,
+                isLoading: true,
                 selectedDate: date
             },() => this.updateList()
         );
@@ -206,7 +200,7 @@ class App extends Component {
         if(!this.state.selectedDate)
             return true;
         this.setState({
-                loading: true,
+                isLoading: true,
                 selectedDate: null
             }, () => this.updateList()
         );
@@ -217,7 +211,7 @@ class App extends Component {
         Api.getInitData().then(
             (res) => {
                 this.setState({
-                    loading: false,
+                    isLoading: false,
                     newsList: res.list,
                     categories: res.categories,
                 });
@@ -238,7 +232,7 @@ class App extends Component {
             <footer className="pt-3 my-md-3 pt-md-3 border-top">
                 <Container>
                     <Row>
-                        <Col>
+                        <Col md={4}>
                             <h6 className="font-weight-normal">Your logo</h6>
                         </Col>
                         <Col></Col>
@@ -255,7 +249,7 @@ class App extends Component {
         const {
             newsList,
             categories,
-            loading
+            isLoading
         } = this.state;
 
         return (
@@ -279,22 +273,24 @@ class App extends Component {
                                     </ListGroup>
                                 </Col>
                                 <Col>
-                                    {
-                                        !loading ?
-                                            (
-                                                <div className="b-list">
-                                                    {
-                                                        (newsList.length > 0) ? newsList.map((el,index2) => {
-                                                            return <div key={index2} className="b-list-item">
-                                                                <NewsItem info={el}></NewsItem>
-                                                            </div>
-                                                        }) : <div>Ничего не найдено...</div>
-                                                    }
-                                                </div>
-                                            )
-                                        :
-                                            <div>Загрузка...</div>
-                                    }
+                                    <div className="b-list">
+                                        {
+                                            !isLoading ?
+                                                (
+                                                    <div>
+                                                        {
+                                                            (newsList.length > 0) ? newsList.map((el,index2) => {
+                                                                return <div key={index2} className="b-list-item">
+                                                                    <NewsItem info={el}></NewsItem>
+                                                                </div>
+                                                            }) : <div>Ничего не найдено...</div>
+                                                        }
+                                                    </div>
+                                                )
+                                            :
+                                                <div>Загрузка...</div>
+                                        }
+                                    </div>
                                 </Col>
 
                                 <Col md="auto" className="mb-3">
